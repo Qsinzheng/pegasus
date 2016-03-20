@@ -1,0 +1,12 @@
+# ignore temporary files
+*.TODO
+*.swp
+*.ori
+*.log
+
+# ignore uploaded imgage files
+/public/uploads/**/*.jpg
+/public/uploads/**/*.png
+
+# ignore vendor files
+/vendor

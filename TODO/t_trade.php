@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS 't_trade' (
+  'id',
+  'operation_no',
+  'seller_id',
+  'customer_id',
+  'origin',
+  'transaction_no',
+  'date_order',
+  'date_pay',
+  'date_upload',
+  'price',
+  'pay_type',
+  'address_id',
+  'remark_seller',
+  'log',
+  'created_at',
+  'updated_at',
+  KEY 'seller_id',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3137 ;
+

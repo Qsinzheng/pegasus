@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS 't_accounting' (
+  'id',
+  'user_type',
+  'user_id',
+  'express_id',
+  'type',
+  'amount',
+  'amount_express',
+  'description',
+  'seq_num',
+  'operator',
+  'date_add',
+  'remark',
+  'created_at',
+  'updated_at',
+) ENGINE=

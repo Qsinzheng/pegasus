@@ -1,0 +1,608 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.8.1
+-- http://www.phpmyadmin.net
+--
+-- 主机: w.rdc.sae.sina.com.cn:3307
+-- 生成日期: 2016 年 03 月 07 日 16:47
+-- 服务器版本: 5.6.23
+-- PHP 版本: 5.3.3
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- 数据库: 'app_daigouguanjia'
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_accounting'
+--
+
+CREATE TABLE IF NOT EXISTS 't_accounting' (
+  'id',
+  'user_type',
+  'user_id',
+  'express_id',
+  'type',
+  'amount',
+  'amount_express',
+  'description',
+  'seq_num',
+  'operator',
+  'date_add',
+  'remark',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='账目' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_address'
+--
+
+CREATE TABLE IF NOT EXISTS 't_address' (
+  'id',
+  'nickname',
+  'user_type',
+  'user_id',
+  'name',
+  'phone',
+  'country',
+  'province',
+  'city',
+  'address',
+  'date_add',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='地址表，包括商家的客户地址等' AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_channel'
+--
+
+CREATE TABLE IF NOT EXISTS 't_channel' (
+  'id',
+  'express_id',
+  'channel_code',
+  'product_category',
+  'description',
+  'cost_1',
+  'cost_2',
+  'cost_our_1',
+  'cost_our_2',
+  'is_in_use',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='快递发货渠道及默认收费方案表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_cost_user'
+--
+
+CREATE TABLE IF NOT EXISTS 't_cost_user' (
+  'id',
+  'user_type',
+  'user_id',
+  'express_id',
+  'channel_id',
+  'cost_1',
+  'cost_2',
+  'date_update',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_employee_express'
+--
+
+CREATE TABLE IF NOT EXISTS 't_employee_express' (
+  'id',
+  'db_id',
+  'express_id',
+  'rank',
+  'status',
+  'name',
+  'email',
+  'QQ',
+  'date_add',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_forecast_detail'
+--
+
+CREATE TABLE IF NOT EXISTS 't_forecast_detail' (
+  'id',
+  'user_type',
+  'user_id',
+  'express_id',
+  'seq_num',
+  'trade_id',
+  'sku_id',
+  'product_id',
+  'title',
+  'quantity',
+  'price',
+  'forecast_type',
+  'channel_id',
+  'insurance_amount',
+  'cost_insurance',
+  'cost_insurance_out',
+  'remark_user',
+  'date_update',
+  'status',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='预报详情表（商家/海淘客提交发货/入库指令表）' AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_forecast_to_detail'
+--
+
+CREATE TABLE IF NOT EXISTS 't_forecast_to_detail' (
+  'id',
+  'forecast_id',
+  'seq_num',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='forecast_user与ship_history的关联表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_forecast_user'
+--
+
+CREATE TABLE IF NOT EXISTS 't_forecast_user' (
+  'id',
+  'user_type',
+  'user_id',
+  'express_id',
+  'carrier',
+  'tracking_no_us',
+  'weight',
+  'date_submit',
+  'date_confirm',
+  'remark_user',
+  'remark_express',
+  'status',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商家/海淘客预报表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_id_card'
+--
+
+CREATE TABLE IF NOT EXISTS 't_id_card' (
+  'id',
+  'user_type',
+  'user_id',
+  'id_name',
+  'id_num',
+  'photo1',
+  'photo2',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_log'
+--
+
+CREATE TABLE IF NOT EXISTS 't_log' (
+  'id',
+  'user_type',
+  'user_id',
+  'table_name',
+  'table_id',
+  'action',
+  'description',
+  'date_add',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_operation_to_tracking'
+--
+
+CREATE TABLE IF NOT EXISTS 't_operation_to_tracking' (
+  'id',
+  'operation_no',
+  'tracking_no',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='业务号和追踪单号的关联表，满足多对多的对应原则' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_product'
+--
+
+CREATE TABLE IF NOT EXISTS 't_product' (
+  'id',
+  'seller_id',
+  'origin',
+  'id_origin',
+  'brand',
+  'style_no',
+  'title',
+  'img',
+  'img_mini',
+  'material',
+  'measure',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10001 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_ship_history'
+--
+
+CREATE TABLE IF NOT EXISTS 't_ship_history' (
+  'id',
+  'trade_id',
+  'user_type',
+  'user_id',
+  'express_id',
+  'tracking_no',
+  'recipient',
+  'status',
+  'weight',
+  'channel_id',
+  'cost_shipping',
+  'cost_shipping_our',
+  'buy_insurance',
+  'insurance_amount',
+  'cost_insurance',
+  'cost_insurance_our',
+  'cost_total',
+  'cost_total_our',
+  'remark_user',
+  'remark_express',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='国际快递发货记录' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_ship_history_detail'
+--
+
+CREATE TABLE IF NOT EXISTS 't_ship_history_detail' (
+  'id',
+  'ship_history_id',
+  'sku_id',
+  'product_id',
+  'title',
+  'quantity',
+  'price',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_sku'
+--
+
+CREATE TABLE IF NOT EXISTS 't_sku' (
+  'id',
+  'product_id',
+  'description',
+  'sku_origin',
+  'img',
+  'img_mini',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=231799 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_stock'
+--
+
+CREATE TABLE IF NOT EXISTS 't_stock' (
+  'id',
+  'seller_id',
+  'sku_id',
+  'product_id',
+  'quantity',
+  'date_update',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='库存单' AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_stock_action'
+--
+
+CREATE TABLE IF NOT EXISTS 't_stock_action' (
+  'id',
+  'stock_id',
+  'stock_detail_id',
+  'type',
+  'action',
+  'date',
+  'user_type',
+  'user_id',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_stock_detail'
+--
+
+CREATE TABLE IF NOT EXISTS 't_stock_detail' (
+  'id',
+  'stock_id',
+  'express_id',
+  'shelf',
+  'bar_code',
+  'cost',
+  'remark_seller',
+  'remark_express',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='库存详情，每一记录对应一个库存' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_trade'
+--
+
+CREATE TABLE IF NOT EXISTS 't_trade' (
+  'id',
+  'operation_no',
+  'seller_id',
+  'customer_id',
+  'origin',
+  'transaction_no',
+  'date_order',
+  'date_pay',
+  'date_upload',
+  'price',
+  'pay_type',
+  'address_id',
+  'remark_seller',
+  'log',
+  'created_at',
+  'updated_at',
+  KEY 'seller_id',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3137 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_trade_product'
+--
+
+CREATE TABLE IF NOT EXISTS 't_trade_product' (
+  'id',
+  'trade_id',
+  'sku_id',
+  'product_id',
+  'quantity',
+  'quantity_shipped',
+  'item_id',
+  'sku_origin',
+  'title',
+  'img_mini',
+  'img',
+  'date_upload',
+  'date_receive',
+  'date_complete',
+  'price',
+  'pay_type',
+  'status',
+  'date_status_update',
+  'remark_seller',
+  'log',
+  'created_at',
+  'updated_at',
+  KEY 'radio_status',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3137 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_trade_tracking'
+--
+
+CREATE TABLE IF NOT EXISTS 't_trade_tracking' (
+  'id',
+  'trade_id',
+  'date_add',
+  'status',
+  'status_detail',
+  'user_id',
+  'user_type',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='订单的状态全程追踪描述' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_user'
+--
+
+CREATE TABLE IF NOT EXISTS 't_user' (
+  'id',
+  'status',
+  'username',
+  'email',
+  'country_code',
+  'phone',
+  'password',
+  'date_register',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_attribute'
+--
+
+CREATE TABLE IF NOT EXISTS 't_attribute' (
+  'id',
+  'status',
+  'user_id',
+  'user_type',
+  'date_add',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_customer'
+--
+
+CREATE TABLE IF NOT EXISTS 't_customer' (
+  'id',
+  'user_id',
+  'status',
+  'phone',
+  'name',
+  'date_register',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_express'
+--
+
+CREATE TABLE IF NOT EXISTS 't_express' (
+  'id',
+  'type',
+  'user_id',
+  'name',
+  'name_public',
+  'short_code',
+  'country',
+  'city',
+  'address',
+  'phone',
+  'contact_email',
+  'date_add',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_employee_express'
+--
+
+CREATE TABLE IF NOT EXISTS 't_employee_of_express' (
+  'id',
+  'user_id',
+  'express_id',
+  'rank',
+  'status',
+  'name',
+  'email',
+  'QQ',
+  'date_add',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_seller'
+--
+
+CREATE TABLE IF NOT EXISTS 't_seller' (
+  'id',
+  'date_add',
+  'user_id',
+  'name',
+  'focus',
+  'brand',
+  'description',
+  'email',
+  'QQ',
+  'country',
+  'log',
+  'created_at',
+  'updated_at',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 't_decoder'
+--
+
+CREATE TABLE IF NOT EXISTS 't_decoder' (
+  'id',
+  'table',
+  'column',
+  'value_original',
+  'value_text',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='本表记录一些表中的某些数值字段取值对应的文字含义' AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------

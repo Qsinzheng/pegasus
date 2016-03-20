@@ -1,0 +1,1 @@
+drop table T_Accounting, T_Address, T_Channel, T_Cost_User, T_Forecast_Detail, T_Forecast_To_Detail, T_Forecast_User, T_Id_Card, T_Log, T_Operation_To_Tracking, T_Product, T_Ship_History, T_Ship_History_Detail, T_Sku, T_Stock, T_Stock_Action, T_Stock_Detail, T_Trade, T_Trade_Product, T_Trade_Tracking, t_login, t_user,  t_customer, t_express, t_employee_of_express, t_seller;
