@@ -48,7 +48,8 @@ class T_Login extends Model implements AuthenticatableContract,
     }
     public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = bcrypt($value);
+        //$this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = $value; // hash it in AuthController
     }
 
     /**

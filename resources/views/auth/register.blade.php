@@ -21,7 +21,7 @@
 							<label for="name" class="col-sm-3 control-label">Name</label>
 
 							<div class="col-sm-6">
-								<input type="text" name="name" class="form-control" value="{{ old('name') }}">
+								<input type="text" name="username" class="form-control" value="{{ old('username') }}">
 							</div>
 						</div>
 
