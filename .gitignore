@@ -4,6 +4,12 @@
 *.ori
 *.log
 
+# ignore composer conf files
+#   make them become local links to different area's version: 
+#   composer.json.cn and composer.lock.cn
+composer.json
+composer.lock
+
 # ignore uploaded imgage files
 /public/uploads/**/*.jpg
 /public/uploads/**/*.png
